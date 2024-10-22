@@ -35,9 +35,19 @@ function shuffle (src) {
  **********************************************/
 
 function App() {
+  const [input, setInput] = React.useState(''); 
+
   return (
     <div className="scramble-game">
       <h1>Scramble Game</h1>
+      <form>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter a word or phrase"
+        />
+      </form>
     </div>
   );
 }
