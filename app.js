@@ -34,27 +34,19 @@ function shuffle (src) {
  * YOUR CODE BELOW
  **********************************************/
 
-function shuffle(src) {
-  const copy = [...src];
-  const length = copy.length;
-  for (let i = 0; i < length; i++) {
-    const x = copy[i];
-    const y = Math.floor(Math.random() * length);
-    const z = copy[y];
-    copy[i] = z;
-    copy[y] = x;
-  }
-  return typeof src === 'string' ? copy.join('') : copy;
-}
-
 function App() {
   const [input, setInput] = React.useState('');
-  const [scrambled, setScrambled] = React.useState(''); 
+  const [scrambled, setScrambled] = React.useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const scrambledWord = shuffle(input); 
-    setScrambled(scrambledWord); 
+    const scrambledWord = shuffle(input);
+    setScrambled(scrambledWord);
+  };
+
+  const handleReset = () => {
+    setInput(''); // Reset input field
+    setScrambled(''); // Reset scrambled word
   };
 
   return (
@@ -69,7 +61,9 @@ function App() {
           required
         />
         <button type="submit">Scramble</button>
+        <button type="button" onClick={handleReset}>Reset</button>
       </form>
+
       {scrambled && (
         <div>
           <h2>Scrambled Word:</h2>
