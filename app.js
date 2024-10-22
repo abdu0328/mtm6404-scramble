@@ -35,18 +35,25 @@ function shuffle (src) {
  **********************************************/
 
 function App() {
-  const [input, setInput] = React.useState(''); 
+  const [input, setInput] = React.useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent page refresh
+    console.log("Input Submitted: ", input); // Log the input value for now
+  };
 
   return (
     <div className="scramble-game">
       <h1>Scramble Game</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter a word or phrase"
+          required
         />
+        <button type="submit">Scramble</button>
       </form>
     </div>
   );
