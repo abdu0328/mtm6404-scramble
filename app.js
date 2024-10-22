@@ -45,8 +45,8 @@ function App() {
   };
 
   const handleReset = () => {
-    setInput(''); // Reset input field
-    setScrambled(''); // Reset scrambled word
+    setInput(''); 
+    setScrambled(''); 
   };
 
   return (
