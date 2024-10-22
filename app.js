@@ -33,3 +33,14 @@ function shuffle (src) {
 /**********************************************
  * YOUR CODE BELOW
  **********************************************/
+
+function App() {
+  return (
+    <div className="scramble-game">
+      <h1>Scramble Game</h1>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
