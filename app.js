@@ -38,8 +38,10 @@ const { useState } = React;
 
 function App() {
   const words = ["apple", "banana", "cherry", "grape", "orange", "pear", "peach", "melon", "plum", "mango"];
-  const [currentWord, setCurrentWord] = useState(shuffle(words[0])); // Scrambled word
-  const [playerGuess, setPlayerGuess] = useState(""); // Player's current guess
+  const [originalWord, setOriginalWord] = useState(words[0]); 
+  const [currentWord, setCurrentWord] = useState(shuffle(words[0])); 
+  const [playerGuess, setPlayerGuess] = useState(""); 
+  const [feedback, setFeedback] = useState(""); 
 
   const handleInputChange = (e) => {
     setPlayerGuess(e.target.value);
@@ -47,8 +49,15 @@ function App() {
 
   const handleGuessSubmit = (e) => {
     e.preventDefault(); 
-    console.log(`Player guessed: ${playerGuess}`); 
-    setPlayerGuess("");
+
+    if (playerGuess.toLowerCase() === originalWord.toLowerCase()) {
+      setFeedback("Correct!");
+  
+    } else {
+      setFeedback("Incorrect, try again! X");
+    }
+
+    setPlayerGuess(""); 
   };
 
   return (
@@ -65,9 +74,9 @@ function App() {
         />
         <button type="submit">Submit</button>
       </form>
+      <p>{feedback}</p> 
     </div>
   );
 }
 
 ReactDOM.render(<App />, document.body);
-
