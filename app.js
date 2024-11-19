@@ -38,16 +38,36 @@ const { useState } = React;
 
 function App() {
   const words = ["apple", "banana", "cherry", "grape", "orange", "pear", "peach", "melon", "plum", "mango"];
-  
-  const [currentWord, setCurrentWord] = useState(shuffle(words[0])); // Scrambled first word
-  
+  const [currentWord, setCurrentWord] = useState(shuffle(words[0])); // Scrambled word
+  const [playerGuess, setPlayerGuess] = useState(""); // Player's current guess
+
+  const handleInputChange = (e) => {
+    setPlayerGuess(e.target.value);
+  };
+
+  const handleGuessSubmit = (e) => {
+    e.preventDefault(); 
+    console.log(`Player guessed: ${playerGuess}`); 
+    setPlayerGuess("");
+  };
+
   return (
     <div>
       <h1>Scramble Game</h1>
       <p>Guess the word:</p>
       <h2>{currentWord}</h2>
+      <form onSubmit={handleGuessSubmit}>
+        <input
+          type="text"
+          value={playerGuess}
+          onChange={handleInputChange}
+          placeholder="Type your guess here"
+        />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
 
 ReactDOM.render(<App />, document.body);
+
