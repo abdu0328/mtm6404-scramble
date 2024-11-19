@@ -33,3 +33,21 @@ function shuffle (src) {
 /***********************************************
  * YOUR CODE BELOW
  ***********************************************/
+
+const { useState } = React;
+
+function App() {
+  const words = ["apple", "banana", "cherry", "grape", "orange", "pear", "peach", "melon", "plum", "mango"];
+  
+  const [currentWord, setCurrentWord] = useState(shuffle(words[0])); // Scrambled first word
+  
+  return (
+    <div>
+      <h1>Scramble Game</h1>
+      <p>Guess the word:</p>
+      <h2>{currentWord}</h2>
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.body);
