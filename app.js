@@ -37,24 +37,37 @@ function shuffle (src) {
 const { useState } = React;
 
 function App() {
-  const words = ["apple", "banana", "cherry", "grape", "orange", "pear", "peach", "melon", "plum", "mango"];
-  const [originalWord, setOriginalWord] = useState(words[0]); 
+  const initialWords = ["apple", "banana", "cherry", "grape", "orange", "pear", "peach", "melon", "plum", "mango"];
+  const [words, setWords] = useState(initialWords); 
+  const [originalWord, setOriginalWord] = useState(words[0]);
   const [currentWord, setCurrentWord] = useState(shuffle(words[0])); 
   const [playerGuess, setPlayerGuess] = useState(""); 
-  const [feedback, setFeedback] = useState(""); 
+  const [feedback, setFeedback] = useState("");
 
   const handleInputChange = (e) => {
     setPlayerGuess(e.target.value);
   };
 
   const handleGuessSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     if (playerGuess.toLowerCase() === originalWord.toLowerCase()) {
-      setFeedback("Correct!");
-  
+      setFeedback("Correct! 🎉");
+
+      const remainingWords = words.filter((word) => word !== originalWord);
+
+      if (remainingWords.length > 0) {
+        const nextWord = remainingWords[0];
+        setOriginalWord(nextWord);
+        setCurrentWord(shuffle(nextWord)); 
+        setWords(remainingWords);
+      } else {
+        setFeedback("Game Over! You've guessed all the words. 🎉");
+        setOriginalWord(""); 
+        setCurrentWord(""); 
+      }
     } else {
-      setFeedback("Incorrect, try again! X");
+      setFeedback("Incorrect, try again! ❌");
     }
 
     setPlayerGuess(""); 
@@ -64,17 +77,18 @@ function App() {
     <div>
       <h1>Scramble Game</h1>
       <p>Guess the word:</p>
-      <h2>{currentWord}</h2>
+      <h2>{currentWord || "No more words!"}</h2>
       <form onSubmit={handleGuessSubmit}>
         <input
           type="text"
           value={playerGuess}
           onChange={handleInputChange}
           placeholder="Type your guess here"
+          disabled={!currentWord} 
         />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!currentWord}>Submit</button> 
       </form>
-      <p>{feedback}</p> 
+      <p>{feedback}</p>
     </div>
   );
 }
