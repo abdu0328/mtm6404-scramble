@@ -43,6 +43,9 @@ function App() {
   const [currentWord, setCurrentWord] = useState(shuffle(words[0])); 
   const [playerGuess, setPlayerGuess] = useState(""); 
   const [feedback, setFeedback] = useState("");
+  const [points, setPoints] = React.useState(0);
+  const [strikes, setStrikes] = React.useState(0);
+
 
   const handleInputChange = (e) => {
     setPlayerGuess(e.target.value);
@@ -53,6 +56,8 @@ function App() {
 
     if (playerGuess.toLowerCase() === originalWord.toLowerCase()) {
       setFeedback("Correct! 🎉");
+      setPoints(points + 1);
+
 
       const remainingWords = words.filter((word) => word !== originalWord);
 
@@ -68,6 +73,7 @@ function App() {
       }
     } else {
       setFeedback("Incorrect, try again! ❌");
+      setStrikes(strikes + 1);
     }
 
     setPlayerGuess(""); 
@@ -89,6 +95,12 @@ function App() {
         <button type="submit" disabled={!currentWord}>Submit</button> 
       </form>
       <p>{feedback}</p>
+
+      <div>
+        <p>Points: {points}</p>
+        <p>Strikes: {strikes}</p>
+      </div>
+
     </div>
   );
 }
