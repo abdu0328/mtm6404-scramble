@@ -1,0 +1,116 @@
+/* General and body */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    color: #4CAF50;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Form */
+  form {
+    margin: 20px 0;
+  }
+  
+  input {
+    font-size: 1rem;
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    margin-right: 10px;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Feedback */
+  p.feedback {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  p.correct {
+    color: #4CAF50;
+  }
+  
+  p.incorrect {
+    color: #F44336;
+  }
+  
+  p.game-over {
+    color: #FF9800;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Points and strikes */
+  div.stats {
+    margin-top: 30px;
+    font-size: 1.1rem;
+  }
+  
+  button.pass {
+    background-color: #FFC107;
+  }
+  
+  button.pass:hover {
+    background-color: #FFB300;
+  }
+  
+  /* Mobile */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+  
+    input {
+      width: 200px;
+    }
+  }
+  
